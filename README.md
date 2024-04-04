@@ -1,5 +1,7 @@
 # Project Name 
-TeaCoffeeTempo
+![TeaCoffeeTempo_Logo]([https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png](https://github.com/VincentCongDao/teacoffetempo/blob/main/public/TeaTempo-logo.png))
+
+TeaCoffeeTempo 
 
 ## Description
 TeaCoffeeTempo is an e-commerce platform specializing in a curated selection of tea and coffee products. My goal is to provide tea and coffee enthusiasts with a seamless online shopping experience.
