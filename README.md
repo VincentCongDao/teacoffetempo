@@ -41,4 +41,4 @@ TeaCoffeeTempo is an e-commerce platform specializing in a curated selection of 
 - [ ] Integration with Stripe for checkout.
 - [ ] Home page redesign for an enhanced user experience.
 - [ ] Deprecation of Google Authentication to reduce costs.
-= [ ] Add Personal Dashboard when user are login
+- [ ] Add Personal Dashboard when user are login
