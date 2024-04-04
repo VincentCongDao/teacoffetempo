@@ -1,5 +1,5 @@
 # Project Name 
-![TeaCoffeeTempo_Logo]([https://lanecdr.org/wp-content/uploads/2019/08/placeholder.png](https://github.com/VincentCongDao/teacoffetempo/blob/main/public/TeaTempo-logo.png))
+![TeaCoffeeTempo_Logo](https://github.com/VincentCongDao/teacoffetempo/blob/main/public/TeaTempo-logo.png)
 
 TeaCoffeeTempo 
 
