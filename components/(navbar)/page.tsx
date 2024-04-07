@@ -30,7 +30,7 @@ const Navbar = async () => {
             <div className="hidden md:block">Search</div>
             <div className="flex items-center gap-8 md:gap-12">
               <div>
-                <Link href="/register">
+                <Link href="/cart">
                   <CartCount />
                 </Link>
               </div>

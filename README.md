@@ -16,6 +16,7 @@ TeaCoffeeTempo is an e-commerce platform specializing in a curated selection of 
 - TailwindCSS
 - bcrypt
 - React Icons
+- useForm
 - NextAuth.js for authentication
 
 **Server:**
@@ -40,5 +41,5 @@ TeaCoffeeTempo is an e-commerce platform specializing in a curated selection of 
 
 - [ ] Integration with Stripe for checkout.
 - [ ] Home page redesign for an enhanced user experience.
-- [ ] Deprecation of Google Authentication to reduce costs.
+- [X] Deprecation of Google Authentication to reduce costs.
 - [ ] Add Personal Dashboard when user are login

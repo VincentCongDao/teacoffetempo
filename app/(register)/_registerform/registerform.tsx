@@ -1,3 +1,6 @@
+/**
+ * The following import statements bring in necessary React components
+ */
 "use client";
 
 import Input from "@/components/(inputs)/input";
@@ -6,19 +9,21 @@ import Button from "@/components/button";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
-import { FaGoogle } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { SafeUser } from "@/types";
 
+// Interface types for RegisterFormProps
 interface RegisterFormProps {
   currentUser: SafeUser | null;
 }
 const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
+  //   State to keep track of loading status
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  // This is useForm hook initialization with default form values
   const {
     register,
     handleSubmit,
@@ -30,12 +35,16 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
       password: "",
     },
   });
+
+  // useEffect to redirect the user to the homepage if they already logged in
   useEffect(() => {
     if (currentUser) {
       router.push("/");
       router.refresh();
     }
-  }, []);
+  }, [currentUser, router]);
+
+  // onSubmit function will be trigger when the form is submited
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     axios
@@ -63,18 +72,14 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {
       })
       .finally(() => setIsLoading(false));
   };
+
+  // Throw this error message if the user is logged in
   if (currentUser) {
     return <p className="text-center">Already Login In. Redirect...</p>;
   }
   return (
     <>
       <Heading title="Sign up for E-Shop" />
-      <Button
-        outline
-        label="Sign Up with Google"
-        icon={FaGoogle}
-        onClick={() => {}}
-      />
       <hr className="bg-slate-300 w-full h-px" />
       <Input
         id="name"

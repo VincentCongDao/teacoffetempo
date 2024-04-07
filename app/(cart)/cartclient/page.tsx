@@ -28,7 +28,7 @@ const CartClient = () => {
     );
   }
   return (
-    <div>
+    <div className="mt-4">
       <Heading title="Shopping Cart" center />
       <div className="grid grid-cols-5 text-xs gap-4 pb-2 items-center mt-8">
         <div className="col-span-2 justify-self-center`">Product</div>

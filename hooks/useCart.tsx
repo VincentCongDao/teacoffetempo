@@ -17,6 +17,8 @@ type CartContextType = {
   handleCartQtyIncrease: (product: CartProduct) => void;
   handleCartQtyDecrease: (product: CartProduct) => void;
   handleClearCart: () => void;
+  paymentIntent: string | null;
+  handleSetPaymentIntent: (val: string | null) => void;
 };
 // Interface for the props that can be passed to the CartContextProvider component.
 // This uses an index signature to allow for any property name with any value, making it flexible.
@@ -43,6 +45,17 @@ export const CartContextProvider = (props: Props) => {
     setCartProducts(cProducts);
   }, []);
 
+  const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
+
+  useEffect(() => {
+    const cartItems: any = localStorage.getItem("eShopCartItems");
+    const cProducts: CartProduct[] | null = JSON.parse(cartItems);
+    const eShopPaymentIntent: any = localStorage.getItem("eShopPaymentIntent");
+    const paymentIntent: string | null = JSON.parse(eShopPaymentIntent);
+
+    setCartProducts(cProducts);
+    setPaymentIntent(paymentIntent);
+  }, []);
   useEffect(() => {
     const getTotals = () => {
       //     if the cart product exist
@@ -67,6 +80,7 @@ export const CartContextProvider = (props: Props) => {
     };
     getTotals();
   }, [cartProducts]);
+
   const handleAddProductToCart = useCallback((product: CartProduct) => {
     setCartProducts((prev) => {
       let updatedCart;
@@ -142,6 +156,14 @@ export const CartContextProvider = (props: Props) => {
     setCartTotalQty(0);
     localStorage.setItem("eShopCartItems", JSON.stringify(null));
   }, [cartProducts]);
+
+  const handleSetPaymentIntent = useCallback(
+    (val: string | null) => {
+      setPaymentIntent(val);
+      localStorage.setItem("eShopPaymentIntent", JSON.stringify(val));
+    },
+    [paymentIntent]
+  );
   // Preparing the value to be provided through the context, including any state or functions that need to be accessible globally.
   const value = {
     cartTotalQty,
@@ -152,6 +174,8 @@ export const CartContextProvider = (props: Props) => {
     handleCartQtyIncrease,
     handleCartQtyDecrease,
     handleClearCart,
+    paymentIntent,
+    handleSetPaymentIntent,
   };
 
   // Render the Provider component of CartContext, passing in the value and any props received by CartContextProvider.

@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
-import { FaGoogle } from "react-icons/fa";
 
 interface LoginFormProps {
   currentUser: SafeUser | null;
@@ -35,7 +34,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       router.push("/");
       router.refresh();
     }
-  }, []);
+  }, [currentUser, router]);
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     signIn("credentials", {
@@ -52,18 +51,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       }
     });
   };
+  // Throw this error message if the user is logged in
   if (currentUser) {
     return <p className="text-center">Already Login In. Redirect...</p>;
   }
   return (
     <>
       <Heading title="Welcome back!" />
-      <Button
-        outline
-        label="Sign Up with Google"
-        icon={FaGoogle}
-        onClick={() => {}}
-      />
       <hr className="bg-slate-300 w-full h-px" />
       <Input
         id="email"

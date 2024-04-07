@@ -1,21 +1,42 @@
+/**
+ * This is a module that handles creating and updating payments intents using Stripe
+ * It integrates with Stripe API to manage payment processes and uses Prisma to interact the database
+ *
+ * calculateOrderAmount helps the total order amount bases on the items in the localstorage
+ * HTTP POST handler for creating and updating payment intents and orders
+ */
+
 import Stripe from "stripe";
 import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 import { CartProduct } from "@/app/product/[productId]/ProductDetails";
 import { getCurrentUser } from "@/action/getCurrentUser";
 
+// Environment variables for Stripe secret keys
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2023-10-16",
 });
 
+/**
+ * Calculate the total price of items in the cart
+ * @param items array list inside CartProduct objects including price and quantity
+ * @returns total the price
+ */
 const calculateOrderAmount = (items: CartProduct[]) => {
   const totalPrice = items.reduce((acc: any, item) => {
     const itemTotal = item.price * item.qty;
     return acc + itemTotal;
   }, 0);
-  return totalPrice;
+
+  const price: any = totalPrice.toFixed(2);
+  return price;
 };
 
+/**
+ * updating and creating a Stripe payment intent and order in the database
+ * @param request incoming the HTTP requests with the order details
+ * @returns should have Next.js response object with the payment intent details or an error message
+ */
 export async function POST(request: Request) {
   // Check for users
   const currentUser = await getCurrentUser();
@@ -35,6 +56,7 @@ export async function POST(request: Request) {
     paymentIntentId: payment_intent_id,
     products: items,
   };
+  // If a payment_intent_id is provided, it means we're updating an existing payment intent.
   if (payment_intent_id) {
     // update the order
     const current_intent = await stripe.paymentIntents.retrieve(

@@ -5,7 +5,7 @@ const Cart = () => {
   return (
     <div>
       <Container>
-        <CartClient />
+            <CartClient />
       </Container>
     </div>
   );
