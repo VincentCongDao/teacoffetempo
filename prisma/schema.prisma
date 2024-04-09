@@ -61,7 +61,7 @@ type CartProduct {
       description String
       category    String
       brand       String
-      selectedImg Image
+      // selectedImg Image
       qty         Int
       price       Float
 }

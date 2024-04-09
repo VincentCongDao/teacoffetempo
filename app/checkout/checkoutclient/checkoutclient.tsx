@@ -12,6 +12,7 @@ const CheckOutClient = () => {
 
   console.log("PaymentIntent: ", paymentIntent);
   console.log("ClientSecret: ", clientSecret);
+
   useEffect(() => {
     if (cartProducts) {
       setLoading(true);
@@ -32,8 +33,16 @@ const CheckOutClient = () => {
           return res.json();
         })
         .then((data) => {
-          setClientSecret(data.paymentIntent.client_secret);
-          handleSetPaymentIntent(data.paymentIntent.id);
+          if (data && data.paymentIntent && data.paymentIntent.client_secret) {
+            setClientSecret(data.paymentIntent.client_secret);
+            handleSetPaymentIntent(data.paymentIntent.id);
+          } else {
+            // Handle the scenario where paymentIntent is not in the data
+            console.error(
+              "PaymentIntent or client_secret is missing in the response"
+            );
+            toast.error("Payment processing error. Please try again.");
+          }
         })
         .catch((error) => {
           setError(true);
@@ -41,7 +50,7 @@ const CheckOutClient = () => {
           toast.error("Something went wrong");
         });
     }
-  }, []);
+  }, [cartProducts, paymentIntent]);
   return (
     <>
       <div className="">Check out</div>

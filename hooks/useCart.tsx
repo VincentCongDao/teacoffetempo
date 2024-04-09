@@ -35,27 +35,19 @@ export const CartContextProvider = (props: Props) => {
   // useState hook to manage the cart's total quantity state, initialized to 0.
   const [cartTotalQty, setCartTotalQty] = useState(0);
   const [cartProducts, setCartProducts] = useState<CartProduct[] | null>(null);
+  const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
   useEffect(() => {
     //   Looking into the local storage for the eShopCartItems
     //   If there are JSON already exists then the cart will shows as already being added
     const cartItems: any = localStorage.getItem("eShopCartItems");
     const cProducts: CartProduct[] | null = JSON.parse(cartItems);
-
-    setCartProducts(cProducts);
-  }, []);
-
-  const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
-
-  useEffect(() => {
-    const cartItems: any = localStorage.getItem("eShopCartItems");
-    const cProducts: CartProduct[] | null = JSON.parse(cartItems);
-    const eShopPaymentIntent: any = localStorage.getItem("eShopPaymentIntent");
+    const eShopPaymentIntent: any = localStorage.getItem("eShopPayment Intent");
     const paymentIntent: string | null = JSON.parse(eShopPaymentIntent);
-
-    setCartProducts(cProducts);
     setPaymentIntent(paymentIntent);
+    setCartProducts(cProducts);
   }, []);
+
   useEffect(() => {
     const getTotals = () => {
       //     if the cart product exist
