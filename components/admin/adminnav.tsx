@@ -3,6 +3,9 @@ import Link from "next/link";
 import Container from "../container";
 import AdminNavItem from "./adminnavitem";
 import { RiDashboardFill } from "react-icons/ri";
+import { MdOutlineLibraryBooks } from "react-icons/md";
+import { TbShoppingCartCog } from "react-icons/tb";
+import { TbShoppingCartPin } from "react-icons/tb";
 import { usePathname } from "next/navigation";
 const AdminNav = () => {
   const pathname = usePathname();
@@ -21,6 +24,36 @@ const AdminNav = () => {
               label="Summary"
               icon={RiDashboardFill}
               selected={pathname === "/admin"}
+            />
+          </Link>
+          <Link
+            href="
+          /admin/add-product"
+          >
+            <AdminNavItem
+              label="Add Product(s)"
+              icon={MdOutlineLibraryBooks}
+              selected={pathname === "/admin/add-product"}
+            />
+          </Link>
+          <Link
+            href="
+          /admin/manage-products"
+          >
+            <AdminNavItem
+              label="Manage Product(s)"
+              icon={TbShoppingCartPin}
+              selected={pathname === "/admin/manage-products"}
+            />
+          </Link>{" "}
+          <Link
+            href="
+          /admin/manage-orders"
+          >
+            <AdminNavItem
+              label="Manage Order(s)"
+              icon={TbShoppingCartCog}
+              selected={pathname === "/admin/manage-orders"}
             />
           </Link>
         </div>
