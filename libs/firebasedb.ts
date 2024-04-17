@@ -5,7 +5,7 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCJbr0t43MHr0CqsdBDvuOH3r-JMJs1ixE",
+  apiKey: process.env.GOOGLE_FIREBASE_API,
   authDomain: "teatempo-ecommerce.firebaseapp.com",
   projectId: "teatempo-ecommerce",
   storageBucket: "teatempo-ecommerce.appspot.com",
