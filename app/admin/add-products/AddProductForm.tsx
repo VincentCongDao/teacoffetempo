@@ -1,5 +1,6 @@
 "use client";
 
+import CustomCheckBox from "@/components/(inputs)/customcheckbox";
 import Input from "@/components/(inputs)/input";
 import TextArea from "@/components/(inputs)/textarea";
 import Heading from "@/components/Heading";
@@ -60,6 +61,11 @@ const AddProductForm = () => {
         register={register}
         errors={errors}
         required
+      />
+      <CustomCheckBox
+        id="inStock"
+        register={register}
+        label="Product is in stock"
       />
     </div>
   );
