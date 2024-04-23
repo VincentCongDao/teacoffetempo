@@ -28,12 +28,12 @@ const AdminNav = () => {
           </Link>
           <Link
             href="
-          /admin/add-product"
+          /admin/add-products"
           >
             <AdminNavItem
               label="Add Product(s)"
               icon={MdOutlineLibraryBooks}
-              selected={pathname === "/admin/add-product"}
+              selected={pathname === "/admin/add-products"}
             />
           </Link>
           <Link
