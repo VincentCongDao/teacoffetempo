@@ -31,7 +31,6 @@ model User {
       name           String?
       email          String?   @unique
       emailVerified  DateTime?
-      image          String?
       hashedPassword String?
       createAt       DateTime  @default(now())
       updateAt       DateTime  @updatedAt
