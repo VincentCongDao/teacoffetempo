@@ -1,8 +1,8 @@
 import Container from "@/components/container";
-import ManageProductsClient from "../manage-products/manageproductsclient";
 import { getCurrentUser } from "@/action/getCurrentUser";
 import NullData from "@/components/NullData";
 import getOrders from "@/action/getOrders";
+import ManageOrderClient from "./manageorderclient";
 
 const ManageOrders = async () => {
   const orders = await getOrders();
@@ -13,7 +13,7 @@ const ManageOrders = async () => {
   return (
     <div className="pt-8">
       <Container>
-        <ManageProductsClient orders={orders} />
+        <ManageOrderClient orders={orders} />
       </Container>
     </div>
   );
