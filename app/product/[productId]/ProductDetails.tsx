@@ -18,7 +18,6 @@ export type CartProduct = {
   description: string;
   category: string;
   brand: string;
-  selectedImg: selectedImgType;
   qty: number;
   price: number;
 };
@@ -46,7 +45,6 @@ const ProductDetails: React.FC<ProductDetailsProp> = ({ product }) => {
     category: product.category,
     brand: product.brand,
     // Selects the first image as the default, or an empty object if no images exist
-    selectedImg: product.images?.[0] || { color: "", colorCode: "", image: "" },
     qty: 1,
     price: product.price,
   });
@@ -82,22 +80,22 @@ const ProductDetails: React.FC<ProductDetailsProp> = ({ product }) => {
       setCartProduct((prev) => ({ ...prev, qty: prev.qty + 1 }));
     }
   }, [cartProduct]);
-  const handleColorSelect = useCallback(
-    (value: selectedImgType) => {
-      setCartProduct((prev) => {
-        return { ...prev, selectedImg: value };
-      });
-    },
-    [cartProduct.selectedImg]
-  );
+  //   const handleColorSelect = useCallback(
+  //     (value: selectedImgType) => {
+  //       setCartProduct((prev) => {
+  //         return { ...prev, selectedImg: value };
+  //       });
+  //     },
+  //     [cartProduct.selectedImg]
+  //   );
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
       <div className="">
-        <ProductImage
+        {/* <ProductImage
           cartProduct={cartProduct}
           product={product}
           handleColorSelect={handleColorSelect}
-        />
+        /> */}
       </div>
       <div className="flex flex-col gap-1 text-state- text-sm">
         <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
