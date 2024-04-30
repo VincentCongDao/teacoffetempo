@@ -22,14 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ data }) => {
       className="col-span-1 cursor-pointer border-[1.2px] border-slate-200 bg-slate-200/50 rounded-sm p-2 transition hover:scale-105 text-center text-sm"
     >
       <div className="flex flex-col items-center w-full gap-1">
-        <div className="aspect-square overflow-hidden relative w-full">
-          <Image
-            fill
-            className="w-full h-full object-contain"
-            src={data.images[0].image}
-            alt={data.name}
-          />
-        </div>
+        <div className="aspect-square overflow-hidden relative w-full"></div>
         <div className="mt-4">
           <h3 className="text-lg">{truncateText(data.name)}</h3>
         </div>

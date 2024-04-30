@@ -2,26 +2,26 @@ import Container from "@/components/container";
 import { products } from "@/utils/products";
 import ProductDetails from "./ProductDetails";
 import ListRating from "./ListingRating";
+import getProductById from "@/action/getProductById";
+import NullData from "@/components/NullData";
 
 interface IParam {
   productId?: string;
 }
-const Product = ({ params }: { params: IParam }) => {
-  const selectedProduct = products.find((item) => item.id === params.productId);
+const Product = async ({ params }: { params: IParam }) => {
+  const product = await getProductById(params);
 
-  if (selectedProduct) {
-    console.log(selectedProduct.id);
-  } else {
-    console.log("Product not found");
+  if (!product) {
+    return <NullData title="Do not have that specific ID" />;
   }
   return (
     <div className="p-8">
       <Container>
-        {selectedProduct && <ProductDetails product={selectedProduct} />}
+        <ProductDetails product={product} />
         <div className="flex flex-col mt-20 gap-4">
           <div className="">Add Rating</div>
           <div className="">
-            <ListRating product={selectedProduct} />
+            <ListRating product={product} />
           </div>
         </div>
       </Container>
