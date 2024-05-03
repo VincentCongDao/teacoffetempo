@@ -5,6 +5,7 @@ import CartCount from "./cartcount/page";
 import Register from "@/app/(register)/register/page";
 import UserMenu from "./usermenu/usermenu";
 import { getCurrentUser } from "@/action/getCurrentUser";
+import SearchBar from "./Searchbar";
 
 const Navbar = async () => {
   const currentUser = await getCurrentUser();
@@ -27,7 +28,9 @@ const Navbar = async () => {
               />
               TeaTempo
             </Link>
-            <div className="hidden md:block">Search</div>
+            <div className="hidden md:block">
+              <SearchBar />
+            </div>
             <div className="flex items-center gap-8 md:gap-12">
               <div>
                 <Link href="/cart">

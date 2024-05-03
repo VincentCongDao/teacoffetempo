@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     // Check for users
     const currentUser = await getCurrentUser();
     if (!currentUser) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.error();
     }
     const body = await request.json();
     const { items, payment_intent_id } = body;
@@ -106,10 +106,7 @@ export async function POST(request: Request) {
         ]);
 
         if (!existing_order) {
-          return NextResponse.json(
-            { error: "Invalid Payment Intent" },
-            { status: 401 }
-          );
+          return NextResponse.error();
         }
 
         return NextResponse.json({ paymentIntent: updated_intent });
@@ -132,9 +129,6 @@ export async function POST(request: Request) {
   } catch (error: any) {
     console.error("Failed to process payment intent:", error);
     // You can return the error message in development to help with debugging
-    return NextResponse.json(
-      { error: "Internal Server Error", message: error.message },
-      { status: 500 }
-    );
+    return NextResponse.error();
   }
 }

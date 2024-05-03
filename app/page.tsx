@@ -1,9 +1,9 @@
+export const revalidate = 0;
 import getProducts, { IProductParams } from "@/action/getProducts";
 import ProductCard from "@/components/(productcard)/page";
 import NullData from "@/components/NullData";
 import BannerContainer from "@/components/bannerContainer";
 import Container from "@/components/container";
-import { products } from "@/utils/products";
 interface HomeProps {
   searchParams: IProductParams;
 }
@@ -26,9 +26,6 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <div>
       <Container>
-        <div>
-          <BannerContainer />
-        </div>
         <div className="">
           <h1>Recommend List</h1>
         </div>
